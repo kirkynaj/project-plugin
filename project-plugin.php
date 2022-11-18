@@ -1,5 +1,8 @@
 <?php
 /**
+ * @package ProjectPlugin
+ */
+/**
  * Plugin Name: Project Plugin
  * Plugin URI:
  * Description: A Project Development for Wordpress
