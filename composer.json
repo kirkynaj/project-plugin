@@ -1,0 +1,19 @@
+{
+    "name": "kirk-garcia/project-plugin",
+    "description": "project plugin starter",
+    "type": "project",
+    "license": "GPL v3",
+    "autoload": {
+        "psr-4": {
+            "Inc\\": "./inc"
+        }
+    },
+    "authors": [
+        {
+            "name": "Kirk Garcia",
+            "email": "janngarcia24@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
