@@ -23,21 +23,21 @@ class Admin extends BaseController {
         $this->setSections();
         $this->setFields();
 
-        $this->settings->addPages($this->pages)->withSubPage('Dashboard')->addSubPages($this->subpages)->register();
+        $this->settings->addPages($this->pages)->withSubPage('All Posts')->addSubPages($this->subpages)->register();
     }
 
     public function setPages() {
 
         $this->pages = array(
             array(
-                'page_title' => 'Project Plugin', 
-                'menu_title' => 'Project',
+                'page_title' => 'Write AI Plugins', 
+                'menu_title' => 'Write AI',
                 'capability' => 'manage_options', 
-                'menu_slug' => 'project_plugin',
-                'callback' => array($this->callbacks, 'adminDashboard'), 
-                'icon_url' => 'dashicons-shortcode',
-                'position' => 110
-            )
+                'menu_slug' => 'write_ai',
+                'callback' => array($this->callbacks, 'adminWriteAI'), 
+                'icon_url' => 'dashicons-welcome-write-blog',
+                'position' => 9
+			)	
         );
     }
 
@@ -45,15 +45,15 @@ class Admin extends BaseController {
 
         $this->subpages = array(
 			array(
-				'parent_slug' => 'project_plugin', 
-				'page_title' => 'Custom Post Types', 
-				'menu_title' => 'CPT', 
+				'parent_slug' => 'write_ai', 
+				'page_title' => 'Add Write AI', 
+				'menu_title' => 'Add New', 
 				'capability' => 'manage_options', 
-				'menu_slug' => 'project_cpt', 
-				'callback' => array( $this->callbacks, 'adminCpt' )
+				'menu_slug' => 'add_new', 
+				'callback' => array( $this->callbacks, 'adminAddnew' )
 			),
 			array(
-				'parent_slug' => 'project_plugin', 
+				'parent_slug' => 'write_ai', 
 				'page_title' => 'Custom Taxonomies', 
 				'menu_title' => 'Taxonomies', 
 				'capability' => 'manage_options', 
@@ -61,12 +61,12 @@ class Admin extends BaseController {
 				'callback' => array( $this->callbacks, 'adminTaxonomy' )
 			),
 			array(
-				'parent_slug' => 'project_plugin', 
-				'page_title' => 'Custom Widgets', 
-				'menu_title' => 'Widgets', 
+				'parent_slug' => 'write_ai', 
+				'page_title' => 'All Settings', 
+				'menu_title' => 'Settings', 
 				'capability' => 'manage_options', 
-				'menu_slug' => 'project_widgets', 
-				'callback' => array( $this->callbacks, 'adminWidget' )
+				'menu_slug' => 'all_settings', 
+				'callback' => array( $this->callbacks, 'adminSettings' )
 			)
 		);
     }
@@ -126,7 +126,30 @@ class Admin extends BaseController {
 					'label_for' => 'first_name',
 					'class' => 'example-class'
 				)
+			),
+			array(
+				'id' => 'checkbox',
+				'title' => 'Checkbox',
+				'callback' => array( $this->callbacks, 'projectCheckbox' ),
+				'page' => 'project_plugin',
+				'section' => 'project_admin_index',
+				'args' => array(
+					'label_for' => 'checkbox',
+					'class' => 'example-class'
+				)
+			),
+			array(
+				'id' => 'dropdown',
+				'title' => 'Dropdown Option',
+				'callback' => array( $this->callbacks, 'projectDropdown' ),
+				'page' => 'project_plugin',
+				'section' => 'project_admin_index',
+				'args' => array(
+					'label_for' => 'dropdown',
+					'class' => 'example-class'
+				)
 			)
+
 		);
 
 		$this->settings->setFields( $args );
